@@ -1,0 +1,246 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>  
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <!-- JQuery -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  
+    <!-- Firebase -->
+
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+
+    <script> 
+    $(document).ready(function(){
+
+      $('div.hidden').fadeIn(1500).removeClass('hidden');
+          
+    });
+    </script>
+
+     <!-- /////////   Google fonts   /////////-->
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head> 
+  
+  <body> 
+  
+  <!--   MAIN logo    -->
+
+  <div width:'100%' class="hidden">
+    
+  <img id='mainlogo'src='http://rubber-match.com/images/rubbermatchlogo.png'>
+ 
+
+  </div>
+
+  
+    <!--     Login Forms     -->
+ 
+  </div>
+
+  <div id='loginForm'>
+
+    <form id='loginCredentials'>
+
+      <div class="group">
+        <input type="text" required id="userName"> 
+        <span class="highlight"> </span>
+        <span class="bar"> </span>  
+        <label>User</label>  
+      </div>
+
+      <div class="group">
+        <input type="text" required id="companyName"> 
+        <span class="highlight"> </span>
+        <span class="bar"> </span>
+        <label>Company</label> 
+      </div>
+
+      <div class="group">
+       <input type='text' required id='emailinput'>
+        <span class="highlight"> </span>
+        <span class="bar"> </span>
+        <label>Email</label>
+      </div>
+
+      <div class="group">
+       <input type='password' required id='mypassword'>
+       <span class="highlight"> </span>
+       <span class="bar"> </span>
+       <label>Password</label>
+      </div>      
+      
+    </form>
+
+  </div>
+
+  <!--    User login interface    --> 
+
+  <div id='loginbuttons'>
+
+    <button class="btn" id='newuser'>New User</button>
+
+    <button class="btn" id='exisinguser'>Existing User</button>
+
+    <button class="btn" id='logmeout'>Log out</button>
+
+    <button class="btn" id="updateInfo"   >Update User Info</button>
+
+  </div>
+
+
+  <!-- button redirect -->
+
+  <script>
+
+  $('#updateInfo').click(function(){
+    window.location = 'newgame.html'
+  });
+
+  </script>
+
+  
+  <!-- First login - set username / company
+
+
+  <div id="firstLogin">
+
+    <form>
+      <div class="group">
+        <input type="text" id="userName" placeholder="User Name">    
+      </div>
+
+      <div class="group">
+         <input type="text" id="companyName" placeholder="Company Name"> 
+      </div>
+    </form>
+  
+
+  </div>
+
+   -->
+
+  <!-- Active User Counter 
+
+  <div>
+    <p id='usercounter'>
+    
+    </p>
+  </div>
+
+  <div>
+
+  <!-- Llist of online users 
+
+    <table id='usersOnlineTable'>
+      <tr>
+        <th>Users Online</th>
+      </tr>
+    </table>
+
+ 
+  </div>
+ 
+ -->
+
+<!-- ADDING A NEW GAME -->
+
+
+<script>
+
+var ref = new Firebase("rubbermatch.firebaseIO.com/")
+$(updateInfo).click(function(){
+  ref.onAuth(function(authData) {
+   //if (authData) {
+      //update User Company & Username
+     
+      ref.child("games").push({
+        
+        Username: authData.uid,
+        Company: $('#companyName').val()
+    
+        });
+     // }
+    })
+  });
+
+
+</script>
+
+<!-- Authentication Monitor -->
+
+<script src='authentication.js'></script>
+
+<!-- log in/log out script -->
+
+<script src='newlogin.js'></script>
+
+<!-- New User Script -->
+
+<script src='newUser.js'></script>
+
+<!-- Users Online 
+
+<script src='onlineUsers.js'></script>
+
+-->
+
+</body>
+
+</html>
+
+
+
+
+
+  
+
+  <!--<div id="menu">
+  </div>
+  
+
+
+  <div id="RubberMatchHeader">
+
+  Challenge Someone
+
+  </div> -->
+
+
+    <!--<script type="text/javascript" src="//platform.linkedin.com/in.js">
+      api_key: 754fkwsikkyysz
+      onLoad: [ONLOAD]
+      authorize: [AUTHORIZE]
+      lang: en_US  
+    </script> 
+
+   <script>
+   
+   /*$(document).ready(function(){
+      $("button").click(function(){
+        $IN.User.authorize();
+
+
+   }); 
+  
+  , function(error) {
+      if (error) {
+        console.log("logout failed", error);
+        window.confirm("logout didn't work")
+      } else {
+        console.log("successfully logged out");
+        window.confirm("you're logged out!");
+      }
+    });
+  </script> -->
+
+
