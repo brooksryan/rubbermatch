@@ -1,6 +1,13 @@
 var ref = new Firebase('rubbermatch.firebaseIO.com');
-
+var usersRef = new Firebase("rubbermatch.firebaseIO.com/users");
+var thisAuthData;
 var thisPassword = "password";
+
+$(document).ready(function () {
+
+    authenticator();
+
+});
 
 var passwordFunction = function (authData) {
 
@@ -18,17 +25,18 @@ function logInThings(){
 		}, 
 		
 		function (error,authData) {
-		debugger
+
     		if (error) {
 
     			console.log(error)
     		
     		} else {
 
-    			passwordFunction (authData);
+    			authenticator (authData);
 			};
 
 	});
+
 };
 
 
@@ -42,8 +50,43 @@ $('#exisinguser').click(function (){
 
 
 $('#logmeout').click(function (){ 
-	ref.unauth();
+	debugger
+	usersRef.child(thisAuthData.uid).update({
+          
+        available: false
+
+    }, 
+
+    logOutFunction());
+
 });
+
+function logOutFunction () {
+
+	console.log('client unauthenticated');
+
+	ref.unauth();
+
+}
+
+function authenticator() {
+    ref.onAuth(function(authData) {
+  
+        if (authData) {
+            
+            thisAuthData = authData;
+            console.log("Authenticated with uid:", thisAuthData);
+            usersRef.child(authData.uid).update({
+          
+            available: true
+
+            });
+
+        }
+    
+    });
+
+};
 
 
 
