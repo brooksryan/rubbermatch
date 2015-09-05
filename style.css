@@ -1,3 +1,29 @@
+.container {
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+:required {
+  background: red;
+}
+
+}
+
+#currentGame {
+
+	order: 1;
+	width: 360px
+
+}
+
+#userList {
+	
+	
+	order: 2;
+	width: 360px
+}
+
 p {
 	font-size: 36px;
 	display: block;
@@ -38,8 +64,11 @@ a {
 
 #loginbuttons {
 
-	width: 40%;
-	display:block;
+  max-width: 320px;
+	display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  align-items:center;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -52,7 +81,7 @@ a {
 	position: relative;
 	height: 30px;
 	width: 60%;
- 	display: inline;
+ 	display: block;
  	margin: 20px auto;
  	padding: 30px auto;
 	overflow: hidden;
@@ -119,9 +148,12 @@ a {
 
 
 .btn {
-
+  
+  max-width: 30%;
+  font-size: 16px;
 	position: relative;
  	display: inline;
+  height: 48px;
  	margin: 10px auto;
  	padding: 15px auto;
 	overflow: hidden;
@@ -184,11 +216,11 @@ a {
 
 #loginForm {
 
-	width:40%;
 	margin-top: 20px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+	
 
 	@media (max-width: 800px) {
 
@@ -215,7 +247,10 @@ a {
 	}
 }
 
-
+#logincredientials {
+  max-width: 50%
+  
+}
 
 .group {
 
@@ -229,7 +264,7 @@ input {
 	font-size:18px;
 	padding:10px 10px 10px 5px;
 	display: block;
-	width: 100%;
+	width: 320px;
 	border: none;
 	border-bottom: 1px solid #757575;
 
@@ -261,7 +296,7 @@ label:focus~label, input:valid~label {
 
 /* BOTTOM BARS ================================= */
 
-.bar {position: relative;display: block;width: 100%; }
+.bar {position: relative;display: block;width: 320px; }
 
 .bar:before, .bar:after {
 
@@ -323,7 +358,7 @@ input:focus~.highlight {
 
 
     body {
-      background-color: #f9f9f9;
+
       font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
       -webkit-user-select: none;
       -moz-user-select: none;

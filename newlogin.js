@@ -3,17 +3,23 @@ var usersRef = new Firebase("rubbermatch.firebaseIO.com/users");
 var thisAuthData;
 var thisPassword = "password";
 
+// RUNS AUTHENTICATOR ON PAGE LOAD TO CHECK FOR AUTHDATA
+
 $(document).ready(function () {
 
     authenticator();
 
 });
 
+// LOGIN CONFIRMATION FUNCTION IN CONSOLE
+
 var passwordFunction = function (authData) {
 
 	console.log("user " + authData.uid + " logged in with " + authData)
 	
 };
+
+//LOGIN FUNCTION IF SUCCESSFULL, TRIGGERS THE AUTHENTICATION FUNCTION
 
 function logInThings(){
 
@@ -33,6 +39,7 @@ function logInThings(){
     		} else {
 
     			authenticator (authData);
+    			window.location = "/newgame.html"
 			};
 
 	});
@@ -40,7 +47,7 @@ function logInThings(){
 };
 
 
-// Existing User Button
+// LOGS IN USER BASED BUTTON; LAUNCHES LOG IN FUNCTION
 
 $('#exisinguser').click(function (){
 
@@ -48,26 +55,12 @@ $('#exisinguser').click(function (){
 	
 });
 
+// SETS USER AVAILABLE TO FALSE, THEN UNAUTHENTICATS USER
 
-$('#logmeout').click(function (){ 
-	debugger
-	usersRef.child(thisAuthData.uid).update({
-          
-        available: false
 
-    }, 
+//LOGOUT FUNCTION
 
-    logOutFunction());
-
-});
-
-function logOutFunction () {
-
-	console.log('client unauthenticated');
-
-	ref.unauth();
-
-}
+//AUTHENTICATION FUNCTION
 
 function authenticator() {
     ref.onAuth(function(authData) {
@@ -87,65 +80,3 @@ function authenticator() {
     });
 
 };
-
-
-
-/*
-
-		ref.authWithPassword({
-      // email input 
-   		email:"user@email.com",
-      // password input 
-    	password:"password"
-
-    }, function (error,authData) {
-
-    	if (error) {
-
-    		console.log("Ya fucked up!")
-
-    	} else {
-
-    		console.log(myName + thisPassword)
-		};
-
-	});
-});
-
-*/
-
-
-
-/* var logauthdata = function (error, authdata){
-
-	if (error) {
-
-		console.log("login failed", error);
-	}
-
-	else {
-
-		console.log("this is the authpayload" + authData);
-		return authData
-
-
-	}
-};
-
-
-/*$('#exisinguser').click(
-
-	function authpayload(){
-    },
-
-    function logauthdata (error,authData){
-
-    });
-
-      // clears input fields
-
-    $('#emailinput').val('');
-    $('#mypassword').val('');
-
-  ;
-*/
